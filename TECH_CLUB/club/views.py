@@ -8,10 +8,19 @@ from .permissions import IsClubMember, IsClubCreator
 class ClubCreateView(generics.CreateAPIView):
     queryset = Club.objects.all()
     serializer_class = ClubSerializer
-    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]  # Remove IsAdminUser
+    # Or use your custom permission:
+    # permission_classes = [permissions.IsAuthenticated, IsInstructor]
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+# class ClubCreateView(generics.CreateAPIView):
+#     queryset = Club.objects.all()
+#     serializer_class = ClubSerializer
+#     permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+
+#     def perform_create(self, serializer):
+#         serializer.save(created_by=self.request.user)
 
 class ClubJoinView(generics.UpdateAPIView):
     queryset = Club.objects.all()

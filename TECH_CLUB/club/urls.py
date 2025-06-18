@@ -1,6 +1,7 @@
-from django.urls import path
-from .views import ( ClubListView, ClubCreateView, ClubDetailView, ClubJoinView, ProjectListView, ProjectCreateView, SubmissionListView, SubmissionCreateView
-)
+from django.urls import path, include
+
+from .views import ClubListView, ClubCreateView, ClubDetailView, ClubJoinView, ProjectListView, ProjectCreateView, SubmissionListView, SubmissionCreateView
+
 
 urlpatterns = [
     # Clubs
